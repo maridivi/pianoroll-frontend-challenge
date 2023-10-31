@@ -1,0 +1,29 @@
+{
+  "name": "pianoroll-frontend-challenge",
+  "version": "1.0.0",
+  "description": "## Introduction",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maridivi/pianoroll-frontend-challenge.git"
+  },
+  "author": "maridivi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/maridivi/pianoroll-frontend-challenge/issues"
+  },
+  "homepage": "https://github.com/maridivi/pianoroll-frontend-challenge#readme",
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.23.2",
+    "@babel/preset-env": "^7.23.2",
+    "@babel/preset-react": "^7.22.15",
+    "babel-loader": "^9.1.3"
+  }
+}
