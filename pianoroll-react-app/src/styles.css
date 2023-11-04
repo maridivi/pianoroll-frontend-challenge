@@ -54,6 +54,7 @@ body {
 
 .selected-pianoroll {
   width: 100%;
+  position: relative;
 }
 
 #section {
@@ -115,6 +116,11 @@ button:hover {
 
 .piano-roll-svg {
   border: 2px solid #381815;
+  aspect-ratio: 2/1;
+}
+
+.piano-roll-svg :hover {
+  cursor: col-resize;
 }
 
 .piano-roll-card {
@@ -125,10 +131,25 @@ button:hover {
   box-sizing: border-box;
 }
 
-.piano-roll-svg {
-  aspect-ratio: 2/1;
-}
-
 .description {
   margin-top: 10px;
 }
+
+.cursor {
+  position: absolute;
+  z-index: 4;
+  top: 11%;
+  bottom: 0px;
+  width: 2px;
+  border-right: 1px solid gray;
+  opacity: 1;
+  pointer-events: none;
+  height: 82%;
+  /* left: 250px;
+  right: 50px; */
+  /* display: none; */
+}
+
+/* .selected-pianoroll:hover .cursor {
+  display: block;
+} */
