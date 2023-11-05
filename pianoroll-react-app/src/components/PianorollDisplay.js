@@ -1,14 +1,18 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import "../styles.css";
 import PianoRoll from "./Pianoroll";
 
 const PianoRollDisplay = () => {
   const [allNotes, setData] = useState(null);
-  const [selectedPianorollIndex, setSelectedPianorollIndex] = useState(null);
+  const [selectedPianorollIndex, setSelectedPianorollIndex] = useState();
 
   function selectPianorollIndex(index) {
     setSelectedPianorollIndex(index);
   }
+
+  useEffect(() => {
+    loadPianoRollData();
+  });
 
   const loadPianoRollData = async () => {
     try {
@@ -34,11 +38,6 @@ const PianoRollDisplay = () => {
 
   return (
     <>
-      <div id="buttonContainer">
-        <button id="loadCSV" onClick={loadPianoRollData}>
-          "Load Piano Rolls!"
-        </button>
-      </div>
       {typeof selectedPianorollIndex !== "undefined" ? (
         <div className="main-view">
           <div className="selected-pianoroll">
@@ -46,6 +45,7 @@ const PianoRollDisplay = () => {
               notes={pianoRolls[selectedPianorollIndex]}
               onClick={() => selectPianorollIndex(selectedPianorollIndex)}
               isSelected
+              rollId={selectedPianorollIndex}
             />
           </div>
           <div className="pianorolls">
@@ -58,6 +58,7 @@ const PianoRollDisplay = () => {
                   key={i}
                   notes={notes}
                   onClick={() => selectPianorollIndex(i)}
+                  rollId={i}
                 />
               ))}
           </div>

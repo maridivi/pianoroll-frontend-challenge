@@ -12,7 +12,7 @@ function App() {
         </div>
       </nav>
 
-      <h1> Welcome to PianoRoll frontend coding challenge!</h1>
+      {/* <h1> Welcome to PianoRoll frontend coding challenge!</h1> */}
 
       <PianoRollDisplay />
     </div>
