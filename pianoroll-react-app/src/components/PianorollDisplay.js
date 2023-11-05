@@ -1,10 +1,13 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useContext, useEffect, useMemo, useState } from "react";
 import "../styles.css";
 import PianoRoll from "./Pianoroll";
+import { AppContext } from "../App";
 
-const PianoRollDisplay = () => {
+const PianoRollDisplay = ({ displayState }) => {
   const [allNotes, setData] = useState(null);
-  const [selectedPianorollIndex, setSelectedPianorollIndex] = useState();
+
+  const { selectedPianorollIndex, setSelectedPianorollIndex } =
+    useContext(AppContext);
 
   function selectPianorollIndex(index) {
     setSelectedPianorollIndex(index);
@@ -12,7 +15,7 @@ const PianoRollDisplay = () => {
 
   useEffect(() => {
     loadPianoRollData();
-  });
+  }, []);
 
   const loadPianoRollData = async () => {
     try {
@@ -31,52 +34,55 @@ const PianoRollDisplay = () => {
     if (!allNotes) return;
     const notes = [];
     for (let rollIndex = 0; rollIndex < 20; rollIndex++) {
-      notes.push(allNotes.slice(rollIndex * 60, rollIndex * 60 + 60));
+      notes.push({
+        notes: allNotes.slice(rollIndex * 60, rollIndex * 60 + 60),
+        id: rollIndex,
+      });
     }
     return notes;
   }, [allNotes]);
 
   return (
-    <>
+    <div id="section">
       {typeof selectedPianorollIndex !== "undefined" ? (
         <div className="main-view">
           <div className="selected-pianoroll">
             <PianoRoll
-              notes={pianoRolls[selectedPianorollIndex]}
+              key={pianoRolls[selectedPianorollIndex].id}
+              notes={pianoRolls[selectedPianorollIndex].notes}
               onClick={() => selectPianorollIndex(selectedPianorollIndex)}
               isSelected
-              rollId={selectedPianorollIndex}
+              rollId={pianoRolls[selectedPianorollIndex].id}
             />
           </div>
           <div className="pianorolls">
             {pianoRolls
-              ?.filter((_, i) => {
-                return i !== selectPianorollIndex;
+              ?.filter(({ id }) => {
+                return id !== selectedPianorollIndex;
               })
-              ?.map((notes, i) => (
+              ?.map(({ notes, id }) => (
                 <PianoRoll
-                  key={i}
+                  key={id}
                   notes={notes}
-                  onClick={() => selectPianorollIndex(i)}
-                  rollId={i}
+                  onClick={() => selectPianorollIndex(id)}
+                  rollId={id}
                 />
               ))}
           </div>
         </div>
       ) : (
-        <div id="section">
-          <div id="pianoRollContainer">
-            {pianoRolls?.map((notes, i) => (
-              <PianoRoll
-                key={i}
-                notes={notes}
-                onClick={() => selectPianorollIndex(i)}
-              />
-            ))}
-          </div>
+        <div id="pianoRollContainer">
+          {pianoRolls?.map(({ notes, id }) => (
+            <PianoRoll
+              key={id}
+              notes={notes}
+              onClick={() => selectPianorollIndex(id)}
+              rollId={id}
+            />
+          ))}
         </div>
       )}
-    </>
+    </div>
   );
 };
 
