@@ -58,10 +58,22 @@ button:hover {
   transform: scale(1.05);
 }
 
+h2 {
+  font-size: 18px;
+}
+
+p {
+  font-size: 14px;
+  text-align: left;
+  color: gray;
+}
+
 .logo-container img {
-  height: 40px;
+  height: 24px;
+  margin: 10px 10px 10px 20px;
   width: auto;
   fill: white;
+  cursor: pointer;
 }
 
 #pianoRollContainer {
@@ -74,26 +86,60 @@ button:hover {
 .main-view {
   display: flex;
   flex-direction: column;
-  padding: 30px;
 
   gap: 30px;
 }
 
 .pianorolls {
-  display: flex;
-  flex-direction: column;
-  width: 50%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  width: 100%;
 }
 
 #section {
   width: 100%;
-  padding: 50px;
+  padding: 6px;
+  /* padding: 50px; */
 }
 
 @media screen and (min-width: 500px) {
   #section {
-    padding: 100px;
+    padding: 18px;
   }
+}
+
+.piano-roll-card {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.piano-roll-card[data-is-active="false"] {
+  transition: all 150ms ease-in-out;
+  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+}
+
+.piano-roll-card[data-is-active="false"]:hover {
+  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+.piano-roll-svg {
+  border-radius: 4px;
+
+  aspect-ratio: 2/1;
+}
+
+#pianoroll-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.selected-pianoroll {
+  width: 100%;
+  position: relative;
 }
 
 @media screen and (min-width: 800px) {
@@ -108,39 +154,6 @@ button:hover {
   .pianorolls {
     width: 25%;
   }
-}
-
-.piano-roll-svg {
-  border: 2px solid #381815;
-  aspect-ratio: 2/1;
-}
-
-/* .piano-roll-svg :hover {
-  cursor: col-resize;
-} */
-
-.piano-roll-card {
-  /* border: 1px solid #ccc; */
-  margin: 0 auto 10px;
-  padding: 10px;
-  width: 100%;
-  box-sizing: border-box;
-  /* transition: transform 300ms ease-in-out; */
-  border-radius: 10px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.piano-roll-card:hover {
-  /* transform: translateY(-2px); */
-  cursor: pointer;
-  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.2);
-}
-
-.selected-pianoroll {
-  width: 100%;
-  position: relative;
-  /* border-radius: 10px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); */
 }
 
 .description {
