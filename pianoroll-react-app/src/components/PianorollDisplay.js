@@ -6,18 +6,22 @@ import { SelectedPianorollContext } from "../App";
 const PianoRollDisplay = () => {
   const [allNotes, setData] = useState(null);
 
+  // Get the selectedPianorollIndex and setSelectedPianorollIndex from the SelectedPianorollContext
   const { selectedPianorollIndex, setSelectedPianorollIndex } = useContext(
     SelectedPianorollContext
   );
 
+  // Define a function to select a piano roll index
   function selectPianorollIndex(index) {
     setSelectedPianorollIndex(index);
   }
 
+  // Load the piano roll data when the component mounts
   useEffect(() => {
     loadPianoRollData();
   }, []);
 
+  // Fetch piano roll data
   const loadPianoRollData = async () => {
     try {
       const response = await fetch("https://pianoroll.ai/random_notes");
@@ -31,6 +35,7 @@ const PianoRollDisplay = () => {
     }
   };
 
+  // Create the piano rolls from allNotes
   const pianoRolls = useMemo(() => {
     if (!allNotes) return;
     const notes = [];
@@ -45,8 +50,10 @@ const PianoRollDisplay = () => {
 
   return (
     <div id="section">
+      {/* Render main view if the user selects a piano roll */}
       {typeof selectedPianorollIndex !== "undefined" ? (
         <div className="main-view">
+          {/* Render selected piano roll */}
           <div className="selected-pianoroll">
             <PianoRoll
               key={pianoRolls[selectedPianorollIndex].id}
@@ -56,6 +63,7 @@ const PianoRollDisplay = () => {
               rollId={pianoRolls[selectedPianorollIndex].id}
             />
           </div>
+          {/* Render a list with the other piano rolls */}
           <div className="pianorolls">
             {pianoRolls
               ?.filter(({ id }) => {
@@ -72,16 +80,20 @@ const PianoRollDisplay = () => {
           </div>
         </div>
       ) : (
-        <div id="pianoRollContainer">
-          {pianoRolls?.map(({ notes, id }) => (
-            <PianoRoll
-              key={id}
-              notes={notes}
-              onClick={() => selectPianorollIndex(id)}
-              rollId={id}
-            />
-          ))}
-        </div>
+        {
+          /* Render grid view with all the piano rolls if the user does not select a piano roll */
+        }(
+          <div id="pianoRollContainer">
+            {pianoRolls?.map(({ notes, id }) => (
+              <PianoRoll
+                key={id}
+                notes={notes}
+                onClick={() => selectPianorollIndex(id)}
+                rollId={id}
+              />
+            ))}
+          </div>
+        )
       )}
     </div>
   );
