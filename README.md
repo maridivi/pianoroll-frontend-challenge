@@ -1,8 +1,8 @@
 # PianoRoll Frontend Task
 
-Screencast demo of my app version:
+Click below to watch the screencast demo of my app version:
 
-<video src="github-assets/screencast.mp4"></video>
+[![Watch the video](https://img.youtube.com/vi/aUfeUCmnKU0/hqdefault.jpg)](https://www.youtube.com/embed/aUfeUCmnKU0)
 
 # React App README
 
