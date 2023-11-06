@@ -1,5 +1,21 @@
 # PianoRoll Frontend Task
 
+Screencast demo of my app version:
+
+<video src="github-assets/screencast.mp4"></video>
+
+# React App README
+
+This project uses [Create React App](https://github.com/facebook/create-react-app).
+
+- `npm start`: Starts the app in development mode at [http://localhost:3000](http://localhost:3000).
+- `npm test`: Launches the test runner in interactive watch mode.
+- `npm run build`: Builds the app for production in the `build` folder.
+
+For more details on testing and deployment, refer to the official [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+
+# Piano Roll README
+
 ## Introduction
 
 You will be building on top of a demo code that generates a widget for browsing Piano Rolls - the core element of [Piano Roll](https://pianoroll.io).
@@ -102,6 +118,3 @@ Your task is to implement a tool or an overlay on the piano roll that allows use
 1. **Functionality**: The selection mechanism should work as described, allowing users to select a range on the piano roll.
 2. **User Experience**: The tool should provide a good user experience, with intuitive controls and clear visual feedback.
 3. **Code Quality**: The code should be clean, easy to read, well-organized, and properly documented.
-
-
-
