@@ -6,8 +6,10 @@ import useSelectNotesRange from "../utils/useSelectNotesRange";
 const PianoRoll = ({ notes, onClick, isSelected, rollId }) => {
   const svgRef = useRef(null);
 
+  // Use the custom hook to render the piano roll
   useRenderPianoRoll(svgRef, notes);
 
+  // Use the custom hook to select a range of notes
   const { selection } = useSelectNotesRange(svgRef, {
     isActive: isSelected,
   });
@@ -21,9 +23,8 @@ const PianoRoll = ({ notes, onClick, isSelected, rollId }) => {
           viewBox="0 0 1 1"
           preserveAspectRatio="none"
           onClick={onClick}
-        >
-          <div className="cursor"></div>
-        </svg>
+        />
+        {/* Render the selected range*/}
         {selection && (
           <div
             style={{
