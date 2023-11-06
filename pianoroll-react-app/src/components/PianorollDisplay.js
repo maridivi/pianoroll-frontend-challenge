@@ -80,20 +80,16 @@ const PianoRollDisplay = () => {
           </div>
         </div>
       ) : (
-        {
-          /* Render grid view with all the piano rolls if the user does not select a piano roll */
-        }(
-          <div className="grid-view">
-            {pianoRolls?.map(({ notes, id }) => (
-              <PianoRoll
-                key={id}
-                notes={notes}
-                onClick={() => selectPianorollIndex(id)}
-                rollId={id}
-              />
-            ))}
-          </div>
-        )
+        <div className="grid-view">
+          {pianoRolls?.map(({ notes, id }) => (
+            <PianoRoll
+              key={id}
+              notes={notes}
+              onClick={() => selectPianorollIndex(id)}
+              rollId={id}
+            />
+          ))}
+        </div>
       )}
     </div>
   );

@@ -88,6 +88,10 @@ p {
   }
   .selected-pianoroll {
     width: 75%;
+    position: sticky;
+    top: 20px;
+
+    height: max-content;
   }
   .pianorolls {
     width: 25%;
