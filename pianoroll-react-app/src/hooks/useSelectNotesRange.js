@@ -88,13 +88,17 @@ export default function useSelectNotesRange(svgRef, options) {
     });
 
     // Log the number of notes in the selection
-    console.log(filteredEls.length);
+    console.log(`There are ${filteredEls.length} notes in the selection`);
   }, [selection, svgRef]);
 
   const onMouseUp = useCallback(
     (e) => {
       // Log the selection and calculate the number of notes in it
-      console.log(selection);
+      console.log(
+        `User selected from ${selection.start.toFixed(
+          2
+        )} to ${selection.end.toFixed(2)}`
+      );
       getNotesNumber();
       isSelecting.current = false;
       currentSelectionStart.current = undefined;

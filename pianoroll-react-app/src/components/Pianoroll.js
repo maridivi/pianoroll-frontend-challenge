@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import "../styles.css";
-import useRenderPianoRoll from "../utils/useRenderPianoRoll";
-import useSelectNotesRange from "../utils/useSelectNotesRange";
+import useRenderPianoRoll from "../hooks/useRenderPianoRoll";
+import useSelectNotesRange from "../hooks/useSelectNotesRange";
 
 const PianoRoll = ({ notes, onClick, isSelected, rollId }) => {
   const svgRef = useRef(null);
