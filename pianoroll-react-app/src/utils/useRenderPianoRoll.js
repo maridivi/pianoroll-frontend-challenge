@@ -1,9 +1,12 @@
 import { useEffect, useRef } from "react";
 
 export default function useRenderPianoRoll(svgRef, notes) {
+  // Create a ref to track if the piano roll has been rendered
   const rendered = useRef(false);
 
+  // Render the piano roll when the notes or svgRef change
   useEffect(() => {
+    // If the piano roll has already been rendered, do nothing
     if (rendered.current === true) return;
 
     const svgElement = svgRef.current;
