@@ -51,11 +51,38 @@ export default function useSelectNotesRange(svgRef, options) {
     [isSelecting, svgRef]
   );
 
-  const onMouseUp = useCallback((e) => {
-    isSelecting.current = false;
-    currentSelectionStart.current = undefined;
-    currentSelectionStartX.current = undefined;
-  }, []);
+  const getNotesNumber = useCallback(() => {
+    if (!svgRef.current || !selection) return;
+
+    const notesEls = Array.from(
+      svgRef.current.querySelectorAll(".note-rectangle")
+    );
+    const filteredEls = notesEls.filter((el) => {
+      const x = parseFloat(el.getAttribute("x"));
+      const width = parseFloat(el.getAttribute("width"));
+      const end = x + width;
+
+      if (x >= selection.start && x <= selection.end) {
+        return true;
+      } else if (end >= selection.start && end <= selection.end) {
+        return true;
+      }
+
+      return false;
+    });
+    console.log(filteredEls.length);
+  }, [selection, svgRef]);
+
+  const onMouseUp = useCallback(
+    (e) => {
+      console.log(selection);
+      getNotesNumber();
+      isSelecting.current = false;
+      currentSelectionStart.current = undefined;
+      currentSelectionStartX.current = undefined;
+    },
+    [getNotesNumber, selection]
+  );
 
   useEffect(() => {
     if (!isActive) return;
