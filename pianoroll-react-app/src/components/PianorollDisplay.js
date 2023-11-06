@@ -1,13 +1,14 @@
 import React, { useContext, useEffect, useMemo, useState } from "react";
 import "../styles.css";
 import PianoRoll from "./Pianoroll";
-import { AppContext } from "../App";
+import { SelectedPianorollContext } from "../App";
 
-const PianoRollDisplay = ({ displayState }) => {
+const PianoRollDisplay = () => {
   const [allNotes, setData] = useState(null);
 
-  const { selectedPianorollIndex, setSelectedPianorollIndex } =
-    useContext(AppContext);
+  const { selectedPianorollIndex, setSelectedPianorollIndex } = useContext(
+    SelectedPianorollContext
+  );
 
   function selectPianorollIndex(index) {
     setSelectedPianorollIndex(index);

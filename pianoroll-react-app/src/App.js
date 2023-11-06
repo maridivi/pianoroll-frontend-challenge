@@ -3,7 +3,7 @@ import "./styles.css";
 import PianoRollDisplay from "./components/PianorollDisplay";
 import { createContext, useState } from "react";
 
-export const AppContext = createContext({
+export const SelectedPianorollContext = createContext({
   selectedPianorollIndex: undefined,
   setSelectedPianorollIndex: () => {},
 });
@@ -12,7 +12,7 @@ function App() {
   const [selectedPianorollIndex, setSelectedPianorollIndex] = useState();
 
   return (
-    <AppContext.Provider
+    <SelectedPianorollContext.Provider
       value={{ selectedPianorollIndex, setSelectedPianorollIndex }}
     >
       <div className="App">
@@ -28,7 +28,7 @@ function App() {
 
         <PianoRollDisplay />
       </div>
-    </AppContext.Provider>
+    </SelectedPianorollContext.Provider>
   );
 }
 
